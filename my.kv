@@ -1,0 +1,874 @@
+WindowManager:
+#поменять в конце местами
+
+    MainEncryptWindow:
+    MainDecryptWindow:
+    PaswordListWindow:
+    AddPaswordWindow:
+    SettingsWindow:
+    AuthorizationWindow:
+
+
+
+<AuthorizationWindow>:
+
+    one: one
+
+    name: "authorization"
+    canvas.before:
+        Color:
+            rgba: 52,52,52,0.2
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+
+
+
+
+
+
+
+
+    Image
+        pos_hint: {'top':1.47}
+        source: 'widgets/top_regtangle_authorization.png'
+
+
+    Image
+        pos_hint: {'top':1.25}
+        source: 'widgets/text_label_1.png'
+
+
+
+
+
+    GridLayout:
+        cols:4
+        height:
+        size_hint: .8, .4
+        pos_hint: {'x':0.1,'y':0.2}
+
+
+        Button:
+            id:one
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            #background_color: 0,0,0,0
+            on_release:
+                root.da()
+                #self.background_color = (1.0, 0.0, 0.0, 1.0) if one.da == 0
+                #da=1 if da==0
+                #print(da)
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+        Button:
+            #pos_hint: {'x':0.21,'y':0.25}
+            #size_hint: .57, .01
+            background_color: 1,1,1,1
+
+            on_release:
+                #root.add_pasword_in_grid()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<MainEncryptWindow>:
+
+    picture_path: picture_path
+    text: text
+    pasword: pasword
+
+    name: "main_encrypt"
+    canvas.before:
+        Color:
+            rgba: 52,52,52,0.2
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+
+
+
+
+
+
+
+
+
+    FloatLayout:
+
+
+    Image
+        pos_hint: {'top':1.47}
+        source: 'widgets/top_regtangle_main.png'
+
+
+
+
+
+    TextInput:
+        id: picture_path
+        hint_text:'Введите путь к файлу карттинки'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.62}
+        size_hint:0.75,0.2
+
+
+
+
+
+
+
+    TextInput:
+        id: text
+        hint_text:'Введите текст'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.5}
+        size_hint:0.75,0.07
+
+
+    TextInput:
+        id: pasword
+        hint_text:'Введите пароль'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.4}
+        size_hint:0.75,0.07
+
+
+
+    #Зашифровать
+    Button:
+        font_size:10
+        pos_hint: {'x':0.21,'y':0.25}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+        on_release:
+            #root.add_pasword_in_grid()
+
+
+        Image:
+            source: 'widgets/button_encrypt_neon.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #закрытый замок
+    Button:
+        font_size:10
+        pos_hint: {'x':0.05,'y':0.13}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+
+
+        Image:
+            source: 'widgets/closed_lock_neon.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #открытый замок
+    Button:
+        font_size:10
+        pos_hint: {'x':0.38,'y':0.13}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "main_decrypt"
+            #root.add_pasword_in_grid()
+
+
+        Image:
+            source: 'widgets/open_lock.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+    #на главную
+    Button:
+        pos_hint: {'x':0.1,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+
+
+        Image:
+            source: 'widgets/home_neon.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на список паролей
+    Button:
+        pos_hint: {'x':0.45,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "pasword_list"
+
+        Image:
+            source: 'widgets/pasword_list.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на настройки
+    Button:
+        pos_hint: {'x':0.8,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "settings"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/settings.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+
+
+
+
+<MainDecryptWindow>:
+    name: "main_decrypt"
+    canvas.before:
+        Color:
+            rgba: 52,52,52,0.2
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+
+
+
+
+
+
+
+
+
+    FloatLayout:
+
+
+    Image
+        pos_hint: {'top':1.47}
+        source: 'widgets/top_regtangle_main.png'
+
+
+
+
+
+    TextInput:
+        id: picture_path
+        hint_text:'Введите путь к файлу карттинки'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.62}
+        size_hint:0.75,0.2
+
+
+
+
+
+
+
+    TextInput:
+        id: pasword
+        hint_text:'Введите пароль'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.5}
+        size_hint:0.75,0.07
+
+
+
+    TextInput:
+        id: text
+        hint_text:'Здес будет текст'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.4}
+        size_hint:0.75,0.07
+
+
+
+    #Расшифровать
+    Button:
+        font_size:10
+        pos_hint: {'x':0.21,'y':0.25}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+        on_release:
+            #root.add_pasword_in_grid()
+
+
+        Image:
+            source: 'widgets/button_decrypt_neon.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #закрытый замок
+    Button:
+        font_size:10
+        pos_hint: {'x':0.05,'y':0.13}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+
+        on_release:
+            app.root.current = "main_encrypt"
+
+
+        Image:
+            source: 'widgets/closed_lock.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #открытый замок
+    Button:
+        font_size:10
+        pos_hint: {'x':0.38,'y':0.13}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+
+
+
+        Image:
+            source: 'widgets/open_lock_neon.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+    #на главную
+    Button:
+        pos_hint: {'x':0.1,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+
+        on_release:
+            app.root.current = "main_encrypt"
+
+
+        Image:
+            source: 'widgets/home_neon.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на список паролей
+    Button:
+        pos_hint: {'x':0.45,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "pasword_list"
+
+        Image:
+            source: 'widgets/pasword_list.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на настройки
+    Button:
+        pos_hint: {'x':0.8,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "settings"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/settings.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+
+
+
+<PaswordListWindow>:
+
+    password_grid: password_grid
+
+    name: "pasword_list"
+    canvas.before:
+        Color:
+            rgba: 52,52,52,0.2
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+    GridLayout:
+        id: password_grid
+        cols:1
+        height:
+    #    Label:
+    #        text:'1111111'
+
+
+    FloatLayout:
+
+    Image
+        pos_hint: {'top':1.47}
+        source: 'widgets/top_regtangle_pasword_list.png'
+
+    #добавить
+    Button:
+        text: "Hello"
+        font_size:10
+        pos_hint: {'x':0.2,'y':0.1}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "add_pasword"
+            #root.add_pasword_in_grid()
+
+
+        Image:
+            source: 'widgets/button_1_neon.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+    #на главную
+    Button:
+        pos_hint: {'x':0.1,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "main_encrypt"
+
+
+        Image:
+            source: 'widgets/home.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на список паролей
+    Button:
+        pos_hint: {'x':0.45,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+
+
+        Image:
+            source: 'widgets/pasword_list_neon.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на настройки
+    Button:
+        pos_hint: {'x':0.8,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "settings"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/settings.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+
+
+
+
+
+
+
+
+<AddPaswordWindow>
+
+    picture_path: picture_path
+    website_address: website_address
+    login: login
+    pasword: pasword
+
+
+
+    name: "add_pasword"
+    canvas.before:
+        Color:
+            rgba: 52,52,52,0.2
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+
+    FloatLayout:
+
+    Image
+        pos_hint: {'top':1.47}
+        source: 'widgets/top_regtangle_pasword_list.png'
+
+
+    Label:
+        text:'Адрес картинки'
+        font_size:20
+        pos_hint: {'x':-0.15,'y':0.35}
+        background_color: 1,1,1,1
+
+
+    #Image:
+        #source: 'widgets/gray_regtangle.png'
+        #pos_hint: {'x':0.01,'y':0.28}
+        #size:100,100
+
+        #TextInput:
+            ##background_color: 10,227,180,89
+            #pos_hint: {'x':0.1,'y':0.62}
+            #size_hint:0.75,0.2
+
+
+    TextInput:
+        id: picture_path
+        hint_text:'Введите путь к файлу карттинки'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.62}
+        size_hint:0.75,0.2
+
+
+
+    Label:
+        text:'Адрес сайта'
+        font_size:20
+        pos_hint: {'x':-0.2,'y':0.08}
+        background_color: 1,1,1,1
+
+    TextInput:
+        id: website_address
+        hint_text:'Введите адрес сайта'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.48}
+        size_hint:0.75,0.07
+
+
+    Label:
+        text:'Логин'
+        font_size:20
+        pos_hint: {'x':-0.3,'y':-0.05}
+        background_color: 1,1,1,1
+
+    TextInput:
+        id: login
+        hint_text:'Введите логин'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.35}
+        size_hint:0.75,0.07
+
+    Label:
+        text:'Пароль'
+        font_size:20
+        pos_hint: {'x':-0.28,'y':-0.2}
+        background_color: 1,1,1,1
+
+    TextInput:
+        id: pasword
+        hint_text:'Введите пароль'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.2}
+        size_hint:0.75,0.07
+
+
+    #добавить
+    Button:
+
+        font_size:10
+        pos_hint: {'x':0.2,'y':0.1}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+        on_release:
+            root.add_pasword()
+            #PaswordListWindow.add_pasword_in_grid()
+
+        Image:
+            source: 'widgets/button_1_neon.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+    #на главную
+    Button:
+        pos_hint: {'x':0.1,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "main_encrypt"
+
+        Image:
+            source: 'widgets/home.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на список паролей
+    Button:
+        pos_hint: {'x':0.45,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "pasword_list"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/pasword_list_neon.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на настройки
+    Button:
+        pos_hint: {'x':0.8,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "settings"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/settings.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+
+
+
+
+
+<SettingsWindow>:
+    name: "settings"
+
+    canvas.before:
+        Color:
+            rgba: 52,52,52,0.2
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+
+    FloatLayout:
+
+
+    Image
+        pos_hint: {'top':1.47}
+        source: 'widgets/top_regtangle_settings.png'
+
+
+
+
+
+
+
+
+    #на главную
+    Button:
+        pos_hint: {'x':0.1,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "main_encrypt"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/home.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на список паролей
+    Button:
+        pos_hint: {'x':0.45,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "pasword_list"
+
+        Image:
+            source: 'widgets/pasword_list.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на настройки
+    Button:
+        pos_hint: {'x':0.8,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+
+
+        Image:
+            source: 'widgets/settings_neon.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
