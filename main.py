@@ -16,7 +16,7 @@ from steganocryptopy.steganography import Steganography
 
 #Steganography.generate_key("")
 
-class Steganography():
+class encryption():
     def encrypted(self):
         encrypted_image = Steganography.encrypt("key.key", "input.png", "message.txt")
         encrypted_image.save("images/output.png")
@@ -25,20 +25,21 @@ class Steganography():
         #self.email.text = ""
 
     def decrypted(self):
-        decrypted_text = Steganography.decrypt("key.key", "output.png")
-        self.message.text = decrypted_text
+        decrypted_text = Steganography.decrypt("key.key", "images/output.png")
         print(decrypted_text)
         print("Расшифорвываю")
+        #self.message.text = decrypted_text
+
 
 
 class AuthorizationWindow(Screen):
-    one = ObjectProperty(None)
-    #one.background_normal: 'gray_button.png'
-    def da(self):
-        if self.one.background_color == [0,0,0,0]:
-            self.one.background_color=[10/255, 227/255, 180/255, 1]
-        elif self.one.background_color == [1,0,0,1]:
-            self.one.background_color = [1, 1, 1, 1]
+    def graphic_key(self,button):
+        #button.background_normal = 'widgets/neon_batton.png'
+        if button.background_normal == 'widgets/gray_button.png':
+            button.background_normal = 'widgets/neon_batton.png'
+
+        elif button.background_normal == 'widgets/neon_batton.png':
+            button.background_normal = 'widgets/gray_button.png'
 
 
 
@@ -79,6 +80,16 @@ class AddPaswordWindow(Screen):
         print(self.website_address.text)
         print(self.login.text)
         print(self.pasword.text)
+
+
+        encrypted_image = Steganography.encrypt("key.key", "input.png", "message.txt")
+        encrypted_image.save("images/output.png")
+        print("Шифрую")
+
+        decrypted_text = Steganography.decrypt("key.key", "images/output.png")
+        print(decrypted_text)
+        print("Расшифорвываю")
+
         #PaswordListWindow.add_pasword_in_grid(PaswordListWindow.self)
 
 
