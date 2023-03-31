@@ -1,13 +1,15 @@
 WindowManager:
 #поменять в конце местами
-    AddPaswordWindow:
-    AuthorizationWindow:
+
+
+
     MainEncryptWindow:
     MainDecryptWindow:
     PaswordListWindow:
-
+    AddPaswordWindow:
     SettingsWindow:
 
+    AuthorizationWindow:
 
 
 
@@ -154,9 +156,10 @@ WindowManager:
 
 <MainEncryptWindow>:
 
+    pasword: pasword
     picture_path: picture_path
     text: text
-    pasword: pasword
+
 
     name: "main_encrypt"
     canvas.before:
@@ -165,12 +168,6 @@ WindowManager:
         Rectangle:
             pos:self.pos
             size:self.size
-
-
-
-
-
-
 
 
 
@@ -192,13 +189,8 @@ WindowManager:
         hint_text:'Введите путь к файлу карттинки'
         background_color: (0.5, 0.5, 0.5, 1)
         foreground_color: (1, 1, 1, 1)
-        pos_hint: {'x':0.1,'y':0.62}
+        pos_hint: {'x':0.1,'y':0.67}
         size_hint:0.75,0.2
-
-
-
-
-
 
 
     TextInput:
@@ -206,18 +198,40 @@ WindowManager:
         hint_text:'Введите текст'
         background_color: (0.5, 0.5, 0.5, 1)
         foreground_color: (1, 1, 1, 1)
-        pos_hint: {'x':0.1,'y':0.5}
+        pos_hint: {'x':0.1,'y':0.57}
         size_hint:0.75,0.07
 
+
+    Label:
+        text: 'Пароль для шифрования'
+        pos_hint: {'x':-0.05,'y':0.02}
+        font_size:17
+        background_color: 1,1,1,1
 
     TextInput:
         id: pasword
-        hint_text:'Введите пароль'
+        hint_text:'Можно использовать только сгенерированые пароли'
         background_color: (0.5, 0.5, 0.5, 1)
         foreground_color: (1, 1, 1, 1)
-        pos_hint: {'x':0.1,'y':0.4}
-        size_hint:0.75,0.07
+        pos_hint: {'x':0.1,'y':0.37}
+        size_hint:0.65,0.115
 
+    #перегенерировать пароль
+    Button:
+        pos_hint: {'x':0.77,'y':0.4}
+        size_hint: .12, .07
+        background_color: 0,0,0,0
+
+
+
+        on_release:
+            root.regenerate_pasword()
+
+        Image
+            #size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+            source: 'widgets/regenerate.png'
 
 
     #Зашифровать
@@ -228,7 +242,7 @@ WindowManager:
         background_color: 0,0,0,0
 
         on_release:
-            #root.add_pasword_in_grid()
+            root.encrypted()
 
 
         Image:
@@ -326,6 +340,11 @@ WindowManager:
 
 
 <MainDecryptWindow>:
+
+    picture_path: picture_path
+    pasword: pasword
+    text: text
+
     name: "main_decrypt"
     canvas.before:
         Color:
@@ -397,7 +416,7 @@ WindowManager:
         background_color: 0,0,0,0
 
         on_release:
-            #root.add_pasword_in_grid()
+            root.decrypted()
 
 
         Image:

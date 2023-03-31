@@ -8,13 +8,13 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
-
 from kivy.uix.floatlayout import FloatLayout
 from kivy.config import Config
 from kivy.core.window import Window
 from steganocryptopy.steganography import Steganography
+import base64
+from kivy.clock import Clock
 
-#Steganography.generate_key("")
 
 class encryption():
     def encrypted(self):
@@ -49,9 +49,53 @@ class MainEncryptWindow(Screen):
     pasword = ObjectProperty(None)
 
 
+    #def on_enter(self, *args):
+    #    print('on_enter')
+    #    Clock.schedule_once(self.regenerate_pasword,5)
+
+
+    def regenerate_pasword(self,*args):
+        #print('+')
+        Steganography.generate_key('temporary_password.key')
+        p=open('temporary_password.key', 'r+')
+        self.pasword.text = p.readline()
+        #p.write('')
+        #print(self.pasword.text)
+        p.close()
+
+    def encrypted(self):
+        m=open('message.txt', 'w')
+        m.write(self.text.text)
+        m.close()
+
+        encrypted_image = Steganography.encrypt('temporary_password.key', self.picture_path.text, 'message.txt')
+        encrypted_image.save("images/output.png")
+        print("Шифрую")
+
+        m = open('message.txt', 'w')
+        m.write('')
+        m.close()
+
+        p = open('temporary_password.key', 'w')
+        p.write('')
+        p.close()
+
 
 class MainDecryptWindow(Screen):
-    pass
+    picture_path = ObjectProperty(None)
+    pasword = ObjectProperty(None)
+    text = ObjectProperty(None)
+
+    def decrypted(self):
+        p=open('temporary_password.key', 'w')
+        p.write(self.pasword.text)
+        p.close()
+        decrypted_text = Steganography.decrypt("temporary_password.key", self.picture_path.text)
+        self.text.text=decrypted_text
+        print("Расшифорвываю!")
+        p = open('temporary_password.key', 'w')
+        p.write('')
+        p.close()
 
 
 class PaswordListWindow(Screen):
@@ -80,15 +124,6 @@ class AddPaswordWindow(Screen):
         print(self.website_address.text)
         print(self.login.text)
         print(self.pasword.text)
-
-
-        encrypted_image = Steganography.encrypt("key.key", "input.png", "message.txt")
-        encrypted_image.save("images/output.png")
-        print("Шифрую")
-
-        decrypted_text = Steganography.decrypt("key.key", "images/output.png")
-        print(decrypted_text)
-        print("Расшифорвываю")
 
         #PaswordListWindow.add_pasword_in_grid(PaswordListWindow.self)
 
