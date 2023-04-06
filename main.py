@@ -34,13 +34,37 @@ class encryption():
 
 class AuthorizationWindow(Screen):
     def graphic_key(self,button):
-        #button.background_normal = 'widgets/neon_batton.png'
-        if button.background_normal == 'widgets/gray_button.png':
-            button.background_normal = 'widgets/neon_batton.png'
+        gk = open('key.key', 'r+')
+        #print(str(button), file=gk)
+        #print(gk.readline())
 
-        elif button.background_normal == 'widgets/neon_batton.png':
-            button.background_normal = 'widgets/gray_button.png'
+        if gk.readline()== '':
+            Steganography.generate_key("key.key")
+            gk.writelines(['button_1 /n','button_2','button_3','button_4','button_5'])
+        col = 0
+        for i in gk:
+            col += 1
+        gk.close
+        #print(col)
+        if col < 16:
+            if button.background_normal == 'widgets/gray_button.png':
+                button.background_normal = 'widgets/neon_batton.png'
+                gk = open('key.key', 'r+')
+                gk.seek(0,3)
+                gk.write('+')
+                #print('+',file=gk)
+                gk.close()
+                #for i in gk:
+                    #print(i)
+                    #print(button.name)
+                    #if i == button.name:
+                    #    print('+++')
 
+            elif button.background_normal == 'widgets/neon_batton.png':
+                button.background_normal = 'widgets/gray_button.png'
+        else:
+            gk.close()
+            print('gk=что-то')
 
 
 class MainEncryptWindow(Screen):
@@ -99,14 +123,27 @@ class MainDecryptWindow(Screen):
 
 
 class PaswordListWindow(Screen):
-    def add_pasword_in_grid(self):
-        print('+')
-        #password_grid = ObjectProperty(None)
-        #new_pasword = Label(text='hello')
-        #password_grid.add_widget(new_pasword)
+    password_grid = ObjectProperty(None)
+    picture_path = ObjectProperty(None)
+    website_address = ObjectProperty(None)
+    login = ObjectProperty(None)
+    pasword = ObjectProperty(None)
+
 
     def on_enter(self):
-        print('+')
+        Clock.schedule_once(self.add_pasword_in_grid)
+
+
+    def add_pasword_in_grid(self,*args):
+        self.password_grid.clear_widgets()
+        print('add pasword in grid')
+        p = open('pasword_list.txt', 'r+')
+        while p.readline() != '':
+            new_pasword = Label(text=p.readline())
+            self.password_grid.add_widget(new_pasword)
+            new_pasword_2 = Label(text=p.readline())
+            self.password_grid.add_widget(new_pasword_2)
+        p.close()
 
 
 class SettingsWindow(Screen):
@@ -125,7 +162,31 @@ class AddPaswordWindow(Screen):
         print(self.login.text)
         print(self.pasword.text)
 
-        #PaswordListWindow.add_pasword_in_grid(PaswordListWindow.self)
+        p = open('pasword_list.txt', 'r+')
+        print(p.readlines())
+        L=p.readlines()
+        for i in L:
+            print(i, file=p)
+        print('', file=p)
+        print(self.website_address.text, file=p)
+        print(self.picture_path.text, file=p)
+        p.close()
+
+
+        m=open('message.txt', 'w')
+        m.write(self.login.text)
+        m.write(self.pasword.text)
+        m.close()
+
+        encrypted_image = Steganography.encrypt('key.key', self.picture_path.text, 'message.txt')
+        encrypted_image.save("images/output.png")
+        print("Шифрую")
+
+        m = open('message.txt', 'w')
+        m.write('')
+        m.close()
+
+        #PaswordListWindow.add_pasword_in_grid()
 
 
 
