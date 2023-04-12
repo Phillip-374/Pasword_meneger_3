@@ -14,21 +14,7 @@ from kivy.core.window import Window
 from steganocryptopy.steganography import Steganography
 import base64
 from kivy.clock import Clock
-
-
-class encryption():
-    def encrypted(self):
-        encrypted_image = Steganography.encrypt("key.key", "input.png", "message.txt")
-        encrypted_image.save("images/output.png")
-        print("Шифрую")
-        #self.name.text = ""
-        #self.email.text = ""
-
-    def decrypted(self):
-        decrypted_text = Steganography.decrypt("key.key", "images/output.png")
-        print(decrypted_text)
-        print("Расшифорвываю")
-        #self.message.text = decrypted_text
+from kivy.uix.image import Image
 
 
 
@@ -124,11 +110,8 @@ class MainDecryptWindow(Screen):
 
 class PaswordListWindow(Screen):
     password_grid = ObjectProperty(None)
-    picture_path = ObjectProperty(None)
-    website_address = ObjectProperty(None)
-    login = ObjectProperty(None)
-    pasword = ObjectProperty(None)
-
+    picture_path=str()
+    website_address=str()
 
     def on_enter(self):
         Clock.schedule_once(self.add_pasword_in_grid)
@@ -139,11 +122,42 @@ class PaswordListWindow(Screen):
         print('add pasword in grid')
         p = open('pasword_list.txt', 'r+')
         while p.readline() != '':
-            new_pasword = Label(text=p.readline())
-            self.password_grid.add_widget(new_pasword)
-            new_pasword_2 = Label(text=p.readline())
-            self.password_grid.add_widget(new_pasword_2)
+            layout = GridLayout(cols=2,size_hint=(1, None), height=70)
+            self.password_grid.add_widget(layout)
+            picture_path_text=p.readline()[:-1]
+            picture = Image(source=picture_path_text, size_hint=(None, 1), width=100)
+            #(background_normal=p.readline()[:-1], size_hint=[0.5,0.3])
+            layout.add_widget(picture)
+            website_address = Button(text=p.readline()[:-1], background_color=[0,0,0,0], name=picture_path_text)
+            layout.add_widget(website_address)
+            #Pasword_1 = PaswordDecryptWindow()
+            #website_address.bind(on_press=Pasword_1.viewing_password)
+            website_address.bind(on_press=self.go_pasword_decrypt)
+
         p.close()
+
+
+        #while p.readline() != '':
+        #    picture = Button(background_normal=p.readline()[:-1],size_hint=(None,None), height=100)
+        #    #(background_normal=p.readline()[:-1], size_hint=[0.5,0.3])
+        #    self.password_grid.add_widget(picture)
+        #    website_address = Button(text=p.readline(),size_hint=(None,None), height=100)
+        #    self.password_grid.add_widget(website_address)
+        #p.close()
+
+
+    def go_pasword_decrypt(self,pasword):
+        PaswordListWindow.picture_path = pasword.name
+        PaswordListWindow.website_address = pasword.text
+        self.manager.current = "pasword_decrypt"
+
+        #Da=PaswordDecryptWindow()
+        #Da.viewing_password(source=pasword.name)
+        #PaswordDecryptWindow.picture.source=pasword.name
+        #print(self.password_grid.layout)
+
+
+
 
 
 class SettingsWindow(Screen):
@@ -151,7 +165,6 @@ class SettingsWindow(Screen):
 
 
 class AddPaswordWindow(Screen):
-    picture_path = ObjectProperty(None)
     website_address = ObjectProperty(None)
     login = ObjectProperty(None)
     pasword = ObjectProperty(None)
@@ -168,18 +181,20 @@ class AddPaswordWindow(Screen):
         for i in L:
             print(i, file=p)
         print('', file=p)
+        print("images/"+self.website_address.text+".png", file=p)
         print(self.website_address.text, file=p)
-        print(self.picture_path.text, file=p)
         p.close()
 
 
         m=open('message.txt', 'w')
         m.write(self.login.text)
+        m.write('*-/n-*')
         m.write(self.pasword.text)
         m.close()
 
         encrypted_image = Steganography.encrypt('key.key', self.picture_path.text, 'message.txt')
-        encrypted_image.save("images/output.png")
+
+        encrypted_image.save("images/"+self.website_address.text+".png")
         print("Шифрую")
 
         m = open('message.txt', 'w')
@@ -188,6 +203,39 @@ class AddPaswordWindow(Screen):
 
         #PaswordListWindow.add_pasword_in_grid()
 
+
+
+class PaswordDecryptWindow(Screen):
+
+    picture = ObjectProperty(None)
+    website_address = ObjectProperty(None)
+    login = ObjectProperty(None)
+    pasword = ObjectProperty(None)
+
+
+    def on_enter(self):
+        Clock.schedule_once(self.drawing_image)
+
+
+    def drawing_image(self,*args):
+        print("viewing_password")
+        #print(PaswordListWindow.picture_path)
+        #print(PaswordListWindow.website_address)
+        self.picture.source=PaswordListWindow.picture_path
+        self.website_address.text=PaswordListWindow.website_address
+        self.login.text=''
+        self.pasword.text =''
+        #picture = Image(source=PaswordListWindow.picture_path, pos_hint={'x':0.1,'y':0.62})
+        #PaswordDecryptWindow.add_widget(picture)
+
+
+    def show_password(self):
+
+        decrypted_text = Steganography.decrypt("key.key", PaswordListWindow.picture_path)
+        login_pasword=decrypted_text.split('*-/n-*')
+        self.login.text=login_pasword[0]
+        self.pasword.text=login_pasword[1]
+        print("Расшифорвывал")
 
 
 

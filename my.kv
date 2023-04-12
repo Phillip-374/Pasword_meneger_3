@@ -7,6 +7,7 @@ WindowManager:
     MainDecryptWindow:
     PaswordListWindow:
     AddPaswordWindow:
+    PaswordDecryptWindow:
     SettingsWindow:
     AuthorizationWindow:
 
@@ -544,12 +545,7 @@ WindowManager:
             pos:self.pos
             size:self.size
 
-    GridLayout:
-        id: password_grid
-        cols:2
-        height:
-    #    Label:
-    #        text:'1111111'
+
 
 
     FloatLayout:
@@ -629,7 +625,14 @@ WindowManager:
 
 
 
-
+    GridLayout:
+        pos_hint: {'x':0,'y':-0.1}
+        id: password_grid
+        cols:1
+        #row_force_deafault: True
+        #row_deafoult_height: 40
+    #    Label:
+    #        text:'1111111'
 
 
 
@@ -748,6 +751,161 @@ WindowManager:
 
         Image:
             source: 'widgets/button_1_neon.png'
+            size:160,200
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+    #на главную
+    Button:
+        pos_hint: {'x':0.1,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "main_encrypt"
+
+        Image:
+            source: 'widgets/home.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на список паролей
+    Button:
+        pos_hint: {'x':0.45,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "pasword_list"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/pasword_list_neon.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+    #на настройки
+    Button:
+        pos_hint: {'x':0.8,'y':0.015}
+        size_hint: .1, .05
+        background_color: 0,0,0,0
+
+        on_release:
+            app.root.current = "settings"
+            root.manager.transition.direction = "right"
+
+        Image:
+            source: 'widgets/settings.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
+
+
+
+
+
+
+
+<PaswordDecryptWindow>
+
+    picture: picture
+    website_address: website_address
+    login: login
+    pasword: pasword
+
+
+
+    name: "pasword_decrypt"
+    canvas.before:
+        Color:
+            rgba: 52,52,52,0.2
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+
+
+
+
+
+    FloatLayout:
+
+    Image
+        pos_hint: {'top':1.47}
+        source: 'widgets/top_regtangle_pasword_list.png'
+
+
+    Image:
+        id: picture
+        pos_hint: {'x':0.1,'y':0.62}
+        size_hint: 0.8,0.3
+        source: 'widgets/regtangle_background_color.png'
+
+
+
+    Label:
+        text:'Адрес сайта'
+        font_size:20
+        pos_hint: {'x':-0.2,'y':0.08}
+        background_color: 1,1,1,1
+
+    TextInput:
+        id: website_address
+        hint_text:'Здесь появится адрес сайта'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.48}
+        size_hint:0.75,0.07
+
+
+    Label:
+        text:'Логин'
+        font_size:20
+        pos_hint: {'x':-0.3,'y':-0.05}
+        background_color: 1,1,1,1
+
+    TextInput:
+        id: login
+        hint_text:'Здесь появится логин'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.35}
+        size_hint:0.75,0.07
+
+    Label:
+        text:'Пароль'
+        font_size:20
+        pos_hint: {'x':-0.28,'y':-0.2}
+        background_color: 1,1,1,1
+
+    TextInput:
+        id: pasword
+        hint_text:'Здесь появится пароль'
+        background_color: (0.5, 0.5, 0.5, 1)
+        foreground_color: (1, 1, 1, 1)
+        pos_hint: {'x':0.1,'y':0.2}
+        size_hint:0.75,0.07
+
+
+    #показать
+    Button:
+
+        font_size:10
+        pos_hint: {'x':0.2,'y':0.1}
+        size_hint: .57, .07
+        background_color: 0,0,0,0
+
+        on_release:
+            root.show_password()
+
+
+        Image:
+            source: 'widgets/button_2_neon.png'
             size:160,200
             center_x: self.parent.center_x
             center_y: self.parent.center_y
